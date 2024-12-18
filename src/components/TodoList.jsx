@@ -9,7 +9,7 @@ import { useState } from "react";
 
 export function TodoList() {
   /**
-   * @type {Todo[]}
+   * @type {[Todo[], (todoList: Todo[]) => void]}
    */
   const [todoList, setTodoList] = useState([]);
 
