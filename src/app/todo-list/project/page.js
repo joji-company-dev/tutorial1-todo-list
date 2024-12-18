@@ -1,11 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoItem from "../components/TodoItem";
 
 export default function TodoList() {
   const [todoList, setTodoList] = useState([]);
   const [input, setInput] = useState("");
+
+   // 로컬스토리지에서 데이터를 가져오는 useEffect
+   useEffect(()=>{
+    const todos = localStorage.getItem('todos');
+    if(todos){
+        setTodoList(JSON.parse(todos));
+    }
+   },[]);
+   //useEffect(()=> {...},[] )
+   //여기서 []는 컴포넌트가 마운트될때 무한루프를 방지한다. 
+   //처음에 오류가 난이유는 의존성배열[]를 넣지않았기에 무한루프가 돌아 오류가난것
+
+   // todoList에 할일목록이 추가될때마다, 로컬스토리지에 저장하는 useEffect
+   useEffect(() => {
+    if(todoList.length > 0){
+        localStorage.setItem("todos", JSON.stringify(todoList));
+    } 
+   },[todoList]);
 
   const handleAdd = () => {
     setTodoList([
