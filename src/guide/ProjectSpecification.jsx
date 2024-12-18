@@ -16,11 +16,17 @@ import { useEffect, useState } from "react";
  */
 
 /**
+ * @typedef {Object} ProjectSpecificationProps
+ * @property {string} projectName - 프로젝트 이름
+ * @property {string} projectPurpose - 프로젝트 목적
+ * @property {Assignment[]} assignmentList - 과제 목록
+ * @property {Reference[]} referenceLinks - 참고할만한 링크
+ */
+
+/**
  * 프로젝트 스펙 컴포넌트
- * @param {string} projectName - 프로젝트 이름
- * @param {string} projectPurpose - 프로젝트 목적
- * @param {Assignment[]} assignmentList - 과제 목록
- * @param {Reference[]} referenceLinks - 참고할만한 링크
+ * @type {React.FC<ProjectSpecificationProps>}
+ * @param {ProjectSpecificationProps} props - 프로젝트 스펙 컴포넌트 속성
  * @returns {JSX.Element} - 프로젝트 스펙 컴포넌트
  */
 export function ProjectSpecification({
