@@ -1,7 +1,7 @@
 export default function TodoItem({ 
     id, 
     text, 
-    onDelete,
+    onDelete 
 }) {
     return (
       <li className="flex justify-between items-center border-b p-2">

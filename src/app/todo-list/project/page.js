@@ -14,6 +14,11 @@ export default function TodoList() {
     ]);
     setInput("");
   };
+
+  const handleDelete = (id) => {
+    setTodoList(todoList.filter((todo) => todo.id !== id));
+  };
+
   return (
     <div className="max-w-md mx-auto mt-10 p-5 border rounded shadow">
       <h1 className="text-2xl font-bold text-center mb-4">Todo List</h1>
@@ -38,6 +43,7 @@ export default function TodoList() {
             key={todo.id}
             id={todo.id}
             text={todo.text}
+            onDelete={handleDelete}
           />
         ))}
       </ul>
