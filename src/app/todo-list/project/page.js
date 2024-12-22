@@ -39,6 +39,7 @@ export default function TodoList() {
   //  },[todoList]);
 
   const handleAdd = () => {
+    if(input.trim() === "") return;
     setTodoListWithPersistence([
       ...todoList,
       { id: Date.now(), text: input },
