@@ -52,6 +52,13 @@ export default function TodoList() {
     setTodoListWithPersistence(updatedTodoList);
   };
 
+  const handleUpdate = (id, newText) => {
+    const updatedTodoList = todoList.map((todo) =>
+      todo.id === id ? {...todo, text: newText } : todo
+    );
+    setTodoListWithPersistence(updatedTodoList);
+  };
+
 //   const handleCheck =() =>{
     //TodoItem 
 //   }
@@ -81,6 +88,7 @@ export default function TodoList() {
             id={todo.id}
             text={todo.text}
             onDelete={handleDelete}
+            onUpdate={handleUpdate}
           />
         ))}
       </ul>
