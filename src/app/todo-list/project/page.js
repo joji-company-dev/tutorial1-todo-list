@@ -7,7 +7,6 @@ export default function TodoList() {
   const [todoList, setTodoList] = useState([]);
   const [input, setInput] = useState("");
 
-  
   // 로컬스토리지에서 데이터를 가져오는 useEffect
   useEffect(() => {
     const todos = localStorage.getItem("todos");
@@ -22,29 +21,16 @@ export default function TodoList() {
       setTodoList([]); // null일 경우 빈 배열로 초기화
     }
   }, []);
-  
-  const setTodoListWithPersistence = (todoList) => {
-    localStorage.setItem('todos', JSON.stringify(todoList));
-    setTodoList(todoList);
-  }
-   //useEffect(()=> {...},[] )
-   //여기서 []는 컴포넌트가 마운트될때 무한루프를 방지한다. 
-   //처음에 오류가 난이유는 의존성배열[]를 넣지않았기에 무한루프가 돌아 오류가난것
 
-   // todoList에 할일목록이 추가될때마다, 로컬스토리지에 저장하는 useEffect
-  //  useEffect(() => {
-  //   if(todoList.length > 0){
-  //       localStorage.setItem("todos", JSON.stringify(todoList));
-  //   } 
-  //  },[todoList]);
+  const setTodoListWithPersistence = (todoList) => {
+    localStorage.setItem("todos", JSON.stringify(todoList));
+    setTodoList(todoList);
+  };
 
   const handleAdd = () => {
-    if(input.trim() === "") return;
-    setTodoListWithPersistence([
-      ...todoList,
-      { id: Date.now(), text: input },
-    ]);
-   setInput("");
+    if (input.trim() === "") return;
+    setTodoListWithPersistence([...todoList, { id: Date.now(), text: input }]);
+    setInput("");
   };
 
   const handleDelete = (id) => {
@@ -54,14 +40,10 @@ export default function TodoList() {
 
   const handleUpdate = (id, newText) => {
     const updatedTodoList = todoList.map((todo) =>
-      todo.id === id ? {...todo, text: newText } : todo
+      todo.id === id ? { ...todo, text: newText } : todo
     );
     setTodoListWithPersistence(updatedTodoList);
   };
-
-//   const handleCheck =() =>{
-    //TodoItem 
-//   }
 
   return (
     <div className="max-w-md mx-auto mt-10 p-5 border rounded shadow">
