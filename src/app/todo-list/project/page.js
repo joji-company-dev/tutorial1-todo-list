@@ -71,6 +71,7 @@ export default function App() {
 
   const TodoEditor = ({ onCreate }) => {
     const [content, setContent] = useState("");
+
     const inputRef = useRef();
 
     const onChangeContent = (e) => {
@@ -135,7 +136,9 @@ export default function App() {
     };
 
     return (
-      <div className={`TodoItem ${isDone ? "done" : ""} flex items-center gap-6 py-5 border-b border-gray-500`}>
+      <div
+        className={`TodoItem ${isDone ? "done" : ""} flex items-center gap-6 py-5 border-b border-gray-500`}
+      >
         <div className="checkbox_col w-5">
           <input
             type="checkbox"
@@ -153,10 +156,16 @@ export default function App() {
               onChange={(e) => setEditContent(e.target.value)}
               className="border border-gray-400 rounded-lg px-4 py-3"
             />
-            <button onClick={onSaveEdit} className="btn btn-save bg-pink-200 text-black rounded-lg px-4 py-3">
+            <button
+              onClick={onSaveEdit}
+              className="btn btn-save bg-pink-200 text-black rounded-lg px-4 py-3"
+            >
               저장
             </button>
-            <button onClick={onCancelEdit} className="btn btn-cancel bg-pink-100 text-black rounded-lg px-4 py-3">
+            <button
+              onClick={onCancelEdit}
+              className="btn btn-cancel bg-pink-100 text-black rounded-lg px-4 py-3"
+            >
               취소
             </button>
           </div>
@@ -164,7 +173,10 @@ export default function App() {
           <div className="title_col flex-1 flex items-center justify-between">
             {content}
             <div className="flex gap-2">
-              <button onClick={toggleEdit} className="btn btn-edit bg-red-200 text-black rounded-lg px-4 py-3">
+              <button
+                onClick={toggleEdit}
+                className="btn btn-edit bg-red-200 text-black rounded-lg px-4 py-3"
+              >
                 수정
               </button>
               <button
