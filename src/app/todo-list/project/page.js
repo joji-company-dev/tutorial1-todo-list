@@ -9,6 +9,7 @@ export default function TodoList() {
   const [input, setInput] = useState("");
 
   const handleAdd = () => {
+    event.preventDefault();
     if (input.trim() === "") return;
     setTodoList([...todoList, { id: Date.now(), text: input }]);
     setInput("");
@@ -29,7 +30,7 @@ export default function TodoList() {
   return (
     <div className="max-w-md mx-auto mt-10 p-5 border rounded shadow">
       <h1 className="text-2xl font-bold text-center mb-4">Todo List</h1>
-      <div className="flex gap-2 mb-4">
+      <form className="flex gap-2 mb-4">
         <input
           type="text"
           placeholder="할 일을 입력하세요"
@@ -38,12 +39,13 @@ export default function TodoList() {
           onChange={(e) => setInput(e.target.value)}
         />
         <button
+          type="submit"
           className="p-4 border rounded-3xl bg-blue-500 text-white"
           onClick={handleAdd}
         >
           추가
         </button>
-      </div>
+      </form>
       <ul>
         {todoList.map((todo) => (
           <TodoItem
