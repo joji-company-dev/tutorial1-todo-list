@@ -2,47 +2,28 @@
 
 import { useEffect, useState } from "react";
 import TodoItem from "../components/TodoItem";
+import { useStateWithLocalStorage } from "../components/useStateWithLocalStorage";
 
 export default function TodoList() {
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useStateWithLocalStorage("todos", []);
   const [input, setInput] = useState("");
-
-  // 로컬스토리지에서 데이터를 가져오는 useEffect
-  useEffect(() => {
-    const todos = localStorage.getItem("todos");
-    if (todos) {
-      try {
-        setTodoList(JSON.parse(todos));
-      } catch (error) {
-        console.error("Error parsing todos from localStorage:", error);
-        setTodoList([]); // 에러가 발생할 경우 빈 배열로 초기화
-      }
-    } else {
-      setTodoList([]); // null일 경우 빈 배열로 초기화
-    }
-  }, []);
-
-  const setTodoListWithPersistence = (todoList) => {
-    localStorage.setItem("todos", JSON.stringify(todoList));
-    setTodoList(todoList);
-  };
 
   const handleAdd = () => {
     if (input.trim() === "") return;
-    setTodoListWithPersistence([...todoList, { id: Date.now(), text: input }]);
+    setTodoList([...todoList, { id: Date.now(), text: input }]);
     setInput("");
   };
 
   const handleDelete = (id) => {
     const updatedTodoList = todoList.filter((todo) => todo.id !== id);
-    setTodoListWithPersistence(updatedTodoList);
+    setTodoList(updatedTodoList);
   };
 
   const handleUpdate = (id, newText) => {
     const updatedTodoList = todoList.map((todo) =>
       todo.id === id ? { ...todo, text: newText } : todo
     );
-    setTodoListWithPersistence(updatedTodoList);
+    setTodoList(updatedTodoList);
   };
 
   return (
