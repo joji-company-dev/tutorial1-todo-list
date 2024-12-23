@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 
 export default function TodoItem({ id, text, onDelete, onUpdate }) {
-
   const [isChecked, setIsChecked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [updatedText, setUpdatedText] = useState(text);
@@ -22,36 +21,34 @@ export default function TodoItem({ id, text, onDelete, onUpdate }) {
     localStorage.setItem(`todo-${id}`, newCheckedState.toString());
   };
 
-  const handleEdit = () =>{
+  const handleEdit = () => {
     setIsEditing(true);
-  }
+  };
 
-  const handleSave = () =>{
+  const handleSave = () => {
     setIsEditing(false);
     onUpdate(id, updatedText);
-  }
+  };
 
-  const handleCancel = () =>{
+  const handleCancel = () => {
     setIsEditing(false);
-    setUpdatedText(text);  
+    setUpdatedText(text);
   };
 
   return (
     <li className="flex justify-between items-center border-b p-2">
-      <input
-        type="checkbox"
-        checked={isChecked}
-        onChange={handleChecked}
-      />
+      <input type="checkbox" checked={isChecked} onChange={handleChecked} />
       {isEditing ? (
-        <input 
-        type="text"
-        value={updatedText}
-        onChange={(e)=> setUpdatedText(e.target.value)}
-          className="border p-1 flex-1 rounded"/>
-        
-      ) :  (
-        <span className={isChecked ? "line-through text-gray-500" : ""}>{text}</span>
+        <input
+          type="text"
+          value={updatedText}
+          onChange={(e) => setUpdatedText(e.target.value)}
+          className="border p-1 flex-1 rounded"
+        />
+      ) : (
+        <span className={isChecked ? "line-through text-gray-500" : ""}>
+          {text}
+        </span>
       )}
       <div className="flex gap-2">
         {isEditing ? (
@@ -59,7 +56,9 @@ export default function TodoItem({ id, text, onDelete, onUpdate }) {
             <button
               onClick={handleSave}
               className="text-green-500 hover:underline"
-            >저장</button>
+            >
+              저장
+            </button>
             <button
               onClick={handleCancel}
               className="text-gray-500 hover:underline"
