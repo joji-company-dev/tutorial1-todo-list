@@ -1,25 +1,16 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-export default function TodoItem({ id, text, onDelete, onUpdate }) {
-  const [isChecked, setIsChecked] = useState(false);
+export default function TodoItem({
+  id,
+  text,
+  check,
+  onDelete,
+  onUpdate,
+  onToggle,
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [updatedText, setUpdatedText] = useState(text);
-
-  useEffect(() => {
-    // 로컬 스토리지에서 해당 항목의 체크 상태를 불러옴
-    const storedCheckState = localStorage.getItem(`todo-${id}`);
-    if (storedCheckState === "true") {
-      setIsChecked(true);
-    }
-  }, [id]);
-
-  const handleChecked = () => {
-    const newCheckedState = !isChecked;
-    setIsChecked(newCheckedState);
-
-    localStorage.setItem(`todo-${id}`, newCheckedState.toString());
-  };
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -37,7 +28,12 @@ export default function TodoItem({ id, text, onDelete, onUpdate }) {
 
   return (
     <li className="flex justify-between items-center border-b p-2">
-      <input type="checkbox" checked={isChecked} onChange={handleChecked} />
+      <input
+        type="checkbox"
+        checked={check}
+        onChange={() => onToggle(id)}
+        className="w-5 h-5"
+      />
       {isEditing ? (
         <input
           type="text"
@@ -46,7 +42,7 @@ export default function TodoItem({ id, text, onDelete, onUpdate }) {
           className="border p-1 flex-1 rounded"
         />
       ) : (
-        <span className={isChecked ? "line-through text-gray-500" : ""}>
+        <span className={check ? "line-through text-gray-500" : ""}>
           {text}
         </span>
       )}
@@ -83,12 +79,6 @@ export default function TodoItem({ id, text, onDelete, onUpdate }) {
           </>
         )}
       </div>
-      {/* <button
-        onClick={() => onDelete(id)}
-        className="text-red-500 hover:underline"
-      >
-        삭제
-      </button> */}
     </li>
   );
 }

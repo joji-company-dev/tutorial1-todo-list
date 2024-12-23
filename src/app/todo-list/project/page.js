@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TodoItem from "../components/TodoItem";
 import { useStateWithLocalStorage } from "../components/useStateWithLocalStorage";
 
@@ -11,7 +11,7 @@ export default function TodoList() {
   const handleAdd = () => {
     event.preventDefault();
     if (input.trim() === "") return;
-    setTodoList([...todoList, { id: Date.now(), text: input }]);
+    setTodoList([...todoList, { id: Date.now(), text: input, check: false }]);
     setInput("");
   };
 
@@ -25,6 +25,14 @@ export default function TodoList() {
       todo.id === id ? { ...todo, text: newText } : todo
     );
     setTodoList(updatedTodoList);
+  };
+
+  const handleCheck = (id) => {
+    setTodoList(
+      todoList.map((todo) =>
+        todo.id === id ? { ...todo, check: !todo.check } : todo
+      )
+    );
   };
 
   return (
@@ -52,8 +60,10 @@ export default function TodoList() {
             key={todo.id}
             id={todo.id}
             text={todo.text}
+            check={todo.check}
             onDelete={handleDelete}
             onUpdate={handleUpdate}
+            onToggle={handleCheck}
           />
         ))}
       </ul>
