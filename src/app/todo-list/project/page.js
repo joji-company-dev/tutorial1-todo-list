@@ -6,7 +6,7 @@ import TodoList from "../components/TodoList.js";
 
 export default function App() {
   const [todo, setTodo] = useState([]);
-  const idRef = useRef();
+  const idRef = useRef(0);
 
   const onCreate = (content) => {
     const newItem = {

@@ -14,6 +14,7 @@ export default function TodoList({ todo, setTodo }) {
     setTodo(todo.filter((TodoItem) => TodoItem.id !== targetId));
   };
   const handelEdit = (targetId, newContent) => {
+    console.log(targetId, newContent);
     setTodo(
       todo.map((TodoItem) =>
         TodoItem.id === targetId
@@ -22,6 +23,7 @@ export default function TodoList({ todo, setTodo }) {
       )
     );
   };
+  console.log(todo);
 
   return (
     <div className="TodoList">
@@ -85,25 +87,27 @@ const TodoItem = ({
         {new Date(createDate).toLocaleDateString()}
       </div>
       {isEditing ? (
-        <div className="edit_col flex gap-2">
-          <input
-            value={editContent}
-            onChange={(e) => setEditContent(e.target.value)}
-            className="border border-gray-400 rounded-lg px-4 py-3"
-          />
-          <button
-            onClick={onSaveEdit}
-            className="btn btn-save bg-pink-200 text-black rounded-lg px-4 py-3"
-          >
-            저장
-          </button>
-          <button
-            onClick={onCancelEdit}
-            className="btn btn-cancel bg-pink-100 text-black rounded-lg px-4 py-3"
-          >
-            취소
-          </button>
-        </div>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <div className="edit_col flex gap-2">
+            <input
+              value={editContent}
+              onChange={(e) => setEditContent(e.target.value)}
+              className="border border-gray-400 rounded-lg px-4 py-3"
+            />
+            <button
+              onClick={onSaveEdit}
+              className="btn btn-save bg-pink-200 text-black rounded-lg px-4 py-3"
+            >
+              저장
+            </button>
+            <button
+              onClick={onCancelEdit}
+              className="btn btn-cancel bg-pink-100 text-black rounded-lg px-4 py-3"
+            >
+              취소
+            </button>
+          </div>
+        </form>
       ) : (
         <div className="title_col flex-1 flex items-center justify-between">
           {content}
