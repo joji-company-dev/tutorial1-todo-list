@@ -27,7 +27,7 @@ export default function TodoItem({
   };
 
   return (
-    <li className="flex justify-between items-center border-b p-2">
+    <div className="flex justify-between items-center border-b p-2">
       <input
         type="checkbox"
         checked={check}
@@ -79,6 +79,6 @@ export default function TodoItem({
           </>
         )}
       </div>
-    </li>
+    </div>
   );
 }

@@ -14,6 +14,7 @@ export default function Home() {
             description="첫 시작은 역시 Todo List!"
             projectHref="todo-list/project"
             specificationHref="todo-list/specification"
+            dndHref="todo-list/dnd"
           />
         </ul>
       </main>

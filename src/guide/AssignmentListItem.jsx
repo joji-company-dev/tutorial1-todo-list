@@ -3,6 +3,7 @@ export function AssignmentListItem({
   description,
   projectHref,
   specificationHref,
+  dndHref,
 }) {
   return (
     <li className="flex flex-col gap-2 border rounded-md border-white p-4">
@@ -19,6 +20,12 @@ export function AssignmentListItem({
         href={specificationHref}
       >
         스펙 페이지
+      </a>
+      <a
+        className="bg-white text-black inline-block p-2 font-bold rounded-md hover:opacity-70"
+        href={dndHref}
+      >
+        드래그앤드롭 연습페이지
       </a>
     </li>
   );
