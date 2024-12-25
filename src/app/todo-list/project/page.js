@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { nanoid } from "nanoid";
 import TodoEditor from "../components/TodoEditor.js";
 import TodoList from "../components/TodoList.js";
 
@@ -28,7 +29,7 @@ export default function App() {
   // 새로운 todo 항목을 생성하는 함수
   const onCreate = (content) => {
     const newItem = {
-      id: idRef.current, // 고유 ID 설정
+      id: nanoid(), // 고유 ID 설정
       content, // content 값 설정
       isDone: false, // 초기 완료 상태 설정정
       createDate: new Date().getTime(), // 생성 날짜 설정
