@@ -16,7 +16,7 @@ export default function EasilyPostsSpecificationPage() {
             },
             {
               label: "API 명세서",
-              href: "https://easily-api.jojicompany.com/api",
+              href: "https://easily-api.jojicompany.com/api#/%EA%B2%8C%EC%8B%9C%EA%B8%80/PostsController_getAllPosts",
             },
           ]}
           assignmentList={[
