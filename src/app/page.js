@@ -15,6 +15,7 @@ export default function Home() {
             projectHref="todo-list/project"
             specificationHref="todo-list/specification"
             dndHref="todo-list/dnd"
+            easilyHref="todo-list/easily"
           />
         </ul>
       </main>
