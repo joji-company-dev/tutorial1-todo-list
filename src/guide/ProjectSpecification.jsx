@@ -55,7 +55,7 @@ export function ProjectSpecification({
     <div className="flex flex-col gap-4">
       <h3 className="text-2xl">프로젝트명: {projectName}</h3>
       <p className="text-base">{projectPurpose}</p>
-      <div className="flex flex-col gap-2 border-2 border-gray-300 rounded-md p-4">
+      <div className="flex flex-col gap-2 border-2 border-[var(--foreground)] rounded-md p-4">
         <h4 className="text-xl">요구사항 목록</h4>
         <ul className="flex flex-col gap-2">
           {assignmentList.map((assignment) => (
