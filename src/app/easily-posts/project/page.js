@@ -1,46 +1,60 @@
 "use client";
-
 import { useEffect, useState } from "react";
 
-export default function EasilyApp() {
+export default function EasilyPosts() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("api/posts/route.js")
-      .then((response) => response.json())
-      .then((data) => {
-        setPosts(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching posts:", error);
-      });
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch("/api/posts");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const json = await response.json();
+        setPosts(Array.isArray(json.data) ? json.data : []);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
   }, []);
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
   return (
-    <div className="max-w-md mx-auto mt-10 p-5 border roudned shadow">
-      <h1 className="text-2xl font-bold text-center mb-4">
-        Easily 게시물 목록
-      </h1>
-      <PostList posts={posts} />
+    <div className="max-w-md mx-auto mt-10 p-5 border rounded shadow">
+      <h1 className="text-2xl font-bold text-center mb-4">EasilyPosts</h1>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id} style={{ marginBottom: "20px" }}>
+            <h2>{post.title}</h2>
+            <p>
+              <strong>Category:</strong> {post.category}
+            </p>
+            <p>
+              <strong>Author:</strong> {post.author.name} ({post.author.email})
+            </p>
+            <p>
+              <strong>Created At:</strong> {post.createdAt}
+            </p>
+            <p>
+              <strong>Views:</strong> {post.views} | <strong>Comments:</strong>{" "}
+              {post.commentCount}
+            </p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
-
-const PostList = ({ posts }) => {
-  return (
-    <div className="PostList">
-      {posts.map((post) => (
-        <PostItem key={post.id} post={post} />
-      ))}
-    </div>
-  );
-};
-
-const PostItem = ({ post }) => {
-  return (
-    <div className="PostItem border p-4 mb-4">
-      <h2 className="text-xl font-bold">{post.title}</h2>
-      <p className="text-gray-700">{post.body}</p>
-    </div>
-  );
-};
