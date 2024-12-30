@@ -1,12 +1,6 @@
 "use client";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Terminal } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function EasilyPosts() {
@@ -65,33 +59,19 @@ export default function EasilyPosts() {
       </h1>
       <h3>공지사항을 확인할 수 있습니다</h3>
       {posts.map((post) => (
-        <Table key={post.id}>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-1/2">Title</TableHead>
-              <TableHead className="w-1/3">Category</TableHead>
-              <TableHead className="w-1/4">Author</TableHead>
-              <TableHead className="w-2/6">FormattedDate</TableHead>
-              <TableHead className="w-2/6">FormattedTime</TableHead>
-              <TableHead className="w-1/10">Views</TableHead>
-              <TableHead className="w-1/10">Comments</TableHead>
-            </TableRow>
-          </TableHeader>
-          <line className="border"></line>
-          <TableBody>
-            <TableRow>
-              <TableCell className="w-1/2">{post.title}</TableCell>
-              <TableCell className="w-1/3">{post.category}</TableCell>
-              <TableCell className="w-1/4">
-                {post.author.name} <br /> ({post.author.email})
-              </TableCell>
-              <TableCell className="2/6">{post.formattedDate}</TableCell>
-              <TableCell className="2/6">{post.formattedTime}</TableCell>
-              <TableCell className="1/10">{post.views}</TableCell>
-              <TableCell className="1/10">{post.commentCount}</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
+        <Alert key={post.id}>
+          <Terminal className="h-4 w-4" />
+          <AlertTitle className="text-xl">{post.title}</AlertTitle>
+          <br />
+          <AlertDescription className="text-gray-700">
+            {post.category} <br />
+            {post.author.name} ({post.author.email}) <br />
+            Date : {post.formattedDate} <br />
+            Time : {post.formattedTime} <br />
+            Views : {post.views} <br />
+            Comments : {post.commentCount} <br />
+          </AlertDescription>
+        </Alert>
       ))}
     </div>
   );
