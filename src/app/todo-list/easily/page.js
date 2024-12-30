@@ -1,5 +1,7 @@
 "use client";
 
+import EasilyPosts from "@/app/easily-posts/project/page";
+
 const CompanyPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -28,23 +30,7 @@ const CompanyPage = () => {
         </div>
       </header>
 
-      <div className="bg-yellow-100 text-yellow-900 py-4">
-        <div className="container mx-auto px-6">
-          <p className="text-center text-sm font-medium">
-            🚨 공지사항: 2024년 1월 1일부터 서비스 이용약관이 변경됩니다. 자세한
-            내용은{" "}
-            <a
-              href="/terms"
-              className="text-blue-600 underline hover:text-blue-800"
-            >
-              여기
-            </a>
-            를 참고하세요.
-          </p>
-        </div>
-      </div>
-
-      <main className="container mx-auto px-6 py-12 flex">
+      <main className="container mx-auto px-6 py-12">
         <section className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">이즐리란?</h2>
           <p className="text-lg text-gray-600">
@@ -72,6 +58,7 @@ const CompanyPage = () => {
             </p>
           </div>
         </section>
+        <EasilyPosts />
       </main>
 
       <footer className="bg-gray-800 text-white py-6">
