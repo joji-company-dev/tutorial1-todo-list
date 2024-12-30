@@ -1,6 +1,7 @@
 "use client";
 
 import EasilyPosts from "@/app/easily-posts/project/page";
+import TodoList from "../project/page";
 
 const CompanyPage = () => {
   return (
@@ -58,7 +59,10 @@ const CompanyPage = () => {
             </p>
           </div>
         </section>
-        <EasilyPosts />
+        <section className="flex ">
+          <TodoList />
+          <EasilyPosts />
+        </section>
       </main>
 
       <footer className="bg-gray-800 text-white py-6">

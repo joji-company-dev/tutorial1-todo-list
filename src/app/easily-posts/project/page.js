@@ -14,6 +14,17 @@ import {
   TypographyP,
 } from "@/app/components/ui/typography";
 
+/**
+ * @typedef {Object} posts
+ * @property {string} title - 게시글 제목
+ * @property {string} author - 게시글 저자
+ * @property {string} category - 카테고리
+ * @property {string} createdAt - 작성일
+ * @property {number} views - 조회수
+ * @property {number} commentCount - 댓글수
+ *
+ */
+
 export default function EasilyPosts() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
