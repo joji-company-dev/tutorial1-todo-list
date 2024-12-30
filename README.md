@@ -35,3 +35,27 @@
 - [`docs`] : 문서화작업을 할때 사용합니다. (e.g. `docs: 커밋 규칙 문서 추가` )
 - [`refactor`] : 기존의 코드를 개선하고자 하는 작업을 할때 사용합니다. (e.g. `refactor: 컴포넌트 이름 변경` )
 - [`config`] : 프로젝트 또는 프레임워크에 대한 설정 작업을 할때 사용합니다. (e.g. `config: tailwind theme 설정 추가` )
+
+EasilyProject/
+src/
+├── app/  
+│ ├── features/ # 기능별 모듈 디렉토리
+│ │ ├── auth/ # 인증 기능 (로그인, 회원가입 등)
+│ │ │ ├── components/ # 인증 관련 컴포넌트
+│ │ │ ├── api/ # 인증 관련 api
+│ │ │ └── pages/ # 인증 관련 페이지
+│ │ │
+│ │ ├── posts/ # 게시판
+│ │ │ ├── components/ # 게시판 관련 컴포넌트
+│ │ │ ├── api/ # 게시판 관련 api
+│ │ │ └── pages/ # 게시판 관련 페이지
+│ │ │  
+│ | ├── easilyMain/ # app 라우팅
+│ │ │ ├── page.tsx # features 내부의 pages와 연결
+│ │ │ └── layout.tsx
+│ │ └──
+│ ├── components/ # 전역에서 사용되는 재사용 가능한 컴포넌트
+│ ├── api/ # 전역에서 사용되는 api
+│ ├── store/ # 전역 상태 관리 (예: Context API, Redux, recoil, zustand 등)
+│ ├── styles/ # 전역 스타일
+│ └── lib/ # 사용되는 라이브러리리

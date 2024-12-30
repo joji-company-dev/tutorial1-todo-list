@@ -1,6 +1,6 @@
 "use client";
 
-import { AssignmentListItem } from "@/guide/AssignmentListItem";
+import { AssignmentListItem } from "../guide/AssignmentListItem";
 
 export default function Home() {
   return (
@@ -16,6 +16,12 @@ export default function Home() {
             specificationHref="todo-list/specification"
             dndHref="todo-list/dnd"
             easilyHref="todo-list/easily"
+          />
+          <AssignmentListItem
+            title="2.이즐리 게시글 목록 불러오기"
+            description="이즐리 게시글 목록을 불러와서 화면에 표시해보세요."
+            projectHref="easily-posts/project"
+            specificationHref="easily-posts/specification"
           />
         </ul>
       </main>
