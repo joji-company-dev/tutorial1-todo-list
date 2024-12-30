@@ -28,22 +28,16 @@ import {
 export default function EasilyPosts() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      try {
-        const response = await fetch("/api/posts");
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const json = await response.json();
-        setPosts(Array.isArray(json.data) ? json.data : []);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+      const response = await fetch("/api/posts");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+      const json = await response.json();
+      setPosts(json.data);
+      setLoading(false);
     };
 
     fetchPosts();
@@ -55,14 +49,6 @@ export default function EasilyPosts() {
         <Skeleton className="h-8 w-3/4 mb-4" />
         <Skeleton className="h-4 w-full mb-2" />
         <Skeleton className="h-4 w-5/6" />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="max-w-md mx-auto mt-10 p-5 text-center">
-        <p className="text-red-500 font-bold">Error: {error}</p>
       </div>
     );
   }
