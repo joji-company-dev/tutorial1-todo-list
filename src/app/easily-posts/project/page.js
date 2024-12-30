@@ -1,4 +1,12 @@
 "use client";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { useEffect, useState } from "react";
 
 export default function EasilyPosts() {
@@ -32,29 +40,42 @@ export default function EasilyPosts() {
   if (error) {
     return <p>Error: {error}</p>;
   }
+
+  console.log(posts);
+
   return (
-    <div className="max-w-md mx-auto mt-10 p-5 border rounded shadow">
-      <h1 className="text-2xl font-bold text-center mb-4">EasilyPosts</h1>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id} style={{ marginBottom: "20px" }}>
-            <h2>{post.title}</h2>
-            <p>
-              <strong>Category:</strong> {post.category}
-            </p>
-            <p>
-              <strong>Author:</strong> {post.author.name} ({post.author.email})
-            </p>
-            <p>
-              <strong>Created At:</strong> {post.createdAt}
-            </p>
-            <p>
-              <strong>Views:</strong> {post.views} | <strong>Comments:</strong>{" "}
-              {post.commentCount}
-            </p>
-          </li>
-        ))}
-      </ul>
+    <div className="mx-auto mt-10 p-5 border rounded shadow">
+      <h1 className="text-3xl font-bold text-left mb-4 text-orange-400">
+        📁공지사항📁
+      </h1>
+      <h3>공지사항을 확인할 수 있습니다</h3>
+      {posts.map((post) => (
+        <Table key={post.id}>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-1/3">Title</TableHead>
+              <TableHead className="w-1/5">Category</TableHead>
+              <TableHead className="w-1/5">Author</TableHead>
+              <TableHead className="w-2/5">Created At</TableHead>
+              <TableHead className="w-1/7">Views</TableHead>
+              <TableHead className="w-1/7">Comments</TableHead>
+            </TableRow>
+          </TableHeader>
+          <line className="border"></line>
+          <TableBody>
+            <TableRow>
+              <TableCell className="w-1/3">{post.title}</TableCell>
+              <TableCell className="w-1/5">{post.category}</TableCell>
+              <TableCell className="w-1/5">
+                {post.author.name}({post.author.email})
+              </TableCell>
+              <TableCell className="2/5">{post.createdAt}</TableCell>
+              <TableCell className="1/7">{post.views}</TableCell>
+              <TableCell className="1/7">{post.commentCount}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      ))}
     </div>
   );
 }
