@@ -58,7 +58,7 @@ export default function EasilyPosts() {
       </h1>
       <h3>공지사항을 확인할 수 있습니다</h3>
       {posts.map((post) => (
-        <Alert key={post.id}>
+        <Alert key={post.id} className="m-3 rounded border-orange-300">
           <Terminal className="h-4 w-4" />
           <AlertTitle className="text-lg text-bold">{post.title}</AlertTitle>
           <AlertDescription className="text-gray-700">
