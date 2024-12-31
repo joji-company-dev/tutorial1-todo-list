@@ -1,8 +1,13 @@
+import { NextRequest } from "next/server";
+
 /**
  *
- * @param {Request} request
+ * @param {NextRequest} request
  * @returns {Promise<Response>}
  */
 export async function GET(request) {
-  return fetch("https://easily-api.jojicompany.com/posts?categories=NOTICE");
+  const categories = request.nextUrl.searchParams.get("categories");
+  return fetch(
+    `https://easily-api.jojicompany.com/posts?categories=${categories}`
+  );
 }

@@ -19,6 +19,7 @@ export default function Home() {
             title="2.이즐리 게시글 목록 불러오기"
             description="이즐리 게시글 목록을 불러와서 화면에 표시해보세요."
             projectHref="easily-posts/project"
+            ASprojectHref="easily-posts/Asproject"
             specificationHref="easily-posts/specification"
           />
         </ul>

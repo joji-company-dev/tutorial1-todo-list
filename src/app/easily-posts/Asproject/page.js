@@ -11,7 +11,7 @@ export default function EasilyPosts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch("/api/posts?categories=NOTICE");
+        const response = await fetch("/api/posts?categories=INQUIRY");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -42,21 +42,21 @@ export default function EasilyPosts() {
   }, []);
 
   if (loading) {
-    return <p className="text-center text-xl"> Loading... </p>;
+    return <p className="text-center text-xl">Loading...</p>;
   }
 
   if (error) {
-    return <p className="text-center text-xl"> Error: {error} </p>;
+    return <p className="text-center text-xl">Error: {error}</p>;
   }
+
+  console.log(posts);
 
   return (
     <div className="max-w-2xl mx-auto mt-10 p-5 border rounded shadow">
-      <h1 className="text-3xl font-bold text-left mb-4 text-orange-400 p-">
-        📁공지사항
-      </h1>
-      <h3>공지사항을 확인할 수 있습니다</h3>
+      <h1 className="text-3xl font-bold text-left mb-4">❓Q&A</h1>
+      <h3>이즐리 운영자로부터 질문과 답변을 확인할 수 있습니다.</h3>
       {posts.map((post) => (
-        <Alert key={post.id} className="m-3 rounded border-orange-300">
+        <Alert key={post.id} className="m-3 rounded border-orange-500">
           <Terminal className="h-4 w-4" />
           <AlertTitle className="text-lg text-bold">{post.title}</AlertTitle>
           <AlertDescription className="text-gray-700">
