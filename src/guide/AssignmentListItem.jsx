@@ -3,6 +3,7 @@ export function AssignmentListItem({
   description,
   projectHref,
   ASprojectHref,
+  AddprojectHref,
   specificationHref,
 }) {
   return (
@@ -20,6 +21,12 @@ export function AssignmentListItem({
         href={ASprojectHref}
       >
         AS 페이지
+      </a>
+      <a
+        className="bg-[var(--foreground)] text-[var(--background)] inline-block p-2 font-bold rounded-md hover:opacity-70"
+        href={AddprojectHref}
+      >
+        공지사항+AS 통합 페이지
       </a>
       <a
         className="bg-[var(--foreground)] text-[var(--background)] inline-block p-2 font-bold rounded-md hover:opacity-70"
