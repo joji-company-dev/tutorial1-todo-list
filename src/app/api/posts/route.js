@@ -4,5 +4,5 @@
  * @returns {Promise<Response>}
  */
 export async function GET(request) {
-  return fetch("https://easily-api.jojicompany.com/posts");
+  return fetch("https://easily-api.jojicompany.com/posts?categories=NOTICE");
 }
